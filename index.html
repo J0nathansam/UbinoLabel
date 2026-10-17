@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ubino Label — Label musical indépendant à Goma</title>
+<meta name="description" content="Ubino Label, label musical indépendant à Goma, RDC. Développer les talents. Construire les carrières.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#0D0D0F; --panel:#17171A; --red:#A9312E; --red2:#7E1F1E; --rust:#B25235; --rust2:#8E3C24;
+  --ink:#FFFFFF; --muted:#C9C3C0; --line:rgba(255,255,255,.14);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--black)}
+body{margin:0;background:var(--black);color:var(--ink);font-family:Montserrat,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6;-webkit-text-size-adjust:100%}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+.brush{font-family:"Permanent Marker","Segoe Print",Impact,sans-serif;font-weight:400;letter-spacing:.02em}
+
+/* Navigation */
+.top{display:flex;flex-wrap:wrap;align-items:center;gap:10px 20px;padding:16px 0}
+.logo{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:1.6rem;letter-spacing:.04em;text-decoration:none;line-height:1}
+.logo small{display:block;font:600 .55rem Montserrat,sans-serif;letter-spacing:.5em;text-align:center;margin-top:3px}
+.nav{display:flex;gap:8px;margin-left:auto;overflow-x:auto}
+.nav a{white-space:nowrap;text-decoration:none;font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:9px 14px;border-radius:999px;border:1px solid var(--line)}
+
+/* Accueil */
+.hero{background:linear-gradient(135deg,var(--red) 0%,var(--red2) 55%,var(--black) 100%)}
+.hero .grid{display:grid;gap:36px;align-items:center;padding:28px 0 64px}
+@media (min-width:820px){.hero .grid{grid-template-columns:1.1fr .9fr}}
+.kicker{font-size:.8rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px}
+.hero h1{font-size:clamp(2.2rem,8vw,3.9rem);line-height:1.1;margin:0 0 18px}
+.hero p.lead{max-width:44ch;color:#F3E6E2;margin:0 0 26px}
+.row{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-block;text-decoration:none;font:700 .85rem Montserrat,sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:13px 22px;border-radius:6px;background:linear-gradient(180deg,var(--rust),var(--rust2));color:#fff;border:1px solid rgba(255,255,255,.25)}
+.btn.ghost{background:transparent}
+.disc{position:relative;width:min(76vw,340px);aspect-ratio:1;border-radius:50%;margin:0 auto;
+  background:repeating-radial-gradient(circle,#0b0b0c 0 2px,#1c1c1f 2px 4px);box-shadow:0 20px 50px rgba(0,0,0,.55)}
+.disc::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 30deg,transparent 0 18%,rgba(255,255,255,.16) 25%,transparent 32% 68%,rgba(255,255,255,.1) 75%,transparent 82%)}
+.disc::after{content:"UBINO";position:absolute;left:32%;top:32%;width:36%;height:36%;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;font:700 clamp(.7rem,3vw,1rem) Georgia,serif;letter-spacing:.1em;box-shadow:inset 0 0 0 5px rgba(0,0,0,.25)}
+@media (prefers-reduced-motion:no-preference){.disc{animation:spin 18s linear infinite}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Sections */
+section{padding:60px 0 0}
+.tag{display:inline-block;background:var(--rust);padding:8px 20px;font-size:1.4rem;margin:0 0 22px;transform:rotate(-1deg)}
+.two{display:grid;gap:18px}
+@media (min-width:820px){.two{grid-template-columns:1fr 1fr}}
+.card{background:linear-gradient(160deg,var(--red) 0%,var(--red2) 60%,#2a0e0e 100%);border-radius:22px;padding:24px;border:1px solid var(--line)}
+.card h3{margin:0 0 12px;font-size:1.3rem;display:inline-block;background:var(--rust);padding:5px 14px}
+.card p{margin:0;color:#F5EAE6}
+.values{display:grid;gap:12px;margin-top:18px}
+@media (min-width:700px){.values{grid-template-columns:1fr 1fr}}
+.val{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.val b{display:inline-block;background:linear-gradient(180deg,var(--rust),var(--rust2));padding:4px 14px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.val p{margin:0;color:var(--muted);font-size:.93rem}
+
+/* Blog */
+.posts{display:grid;gap:16px}
+.post{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px}
+.post h3{margin:0 0 4px;font-family:Georgia,"Times New Roman",serif;font-size:1.5rem}
+.post time{font-size:.8rem;color:var(--rust);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.post .body{margin-top:12px;color:var(--muted);white-space:pre-line}
+.post .body p{margin:0 0 12px}
+
+/* Contact */
+.contact .card{display:grid;gap:14px}
+.contact p{margin:0}
+.links{line-height:2}
+.links a{font-weight:600;text-decoration:underline}
+footer{margin-top:64px;border-top:1px solid var(--line);padding:22px 0 40px;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+
+<div class="hero" id="accueil">
+  <div class="wrap">
+    <header class="top">
+      <a class="logo" href="#accueil">UBINO<small>LABEL</small></a>
+      <nav class="nav" aria-label="Navigation">
+        <a href="#apropos">À propos</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+    <div class="grid">
+      <div>
+        <p class="kicker">Label musical indépendant · Goma, RDC</p>
+        <h1 class="brush">Développer les talents. Construire les carrières.</h1>
+        <p class="lead">Le talent existe. Notre rôle est de lui donner une direction.</p>
+        <div class="row">
+          <a class="btn" href="#blog">Lire le blog</a>
+          <a class="btn ghost" href="#contact">Nous contacter</a>
+        </div>
+      </div>
+      <div class="disc" role="img" aria-label="Disque vinyle Ubino"></div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section id="apropos">
+    <h2 class="tag brush">À propos</h2>
+    <div class="two">
+      <div class="card">
+        <h3 class="brush">Notre mission</h3>
+        <p>Promouvoir et développer les talents musicaux de Goma. Nous donnons aux artistes l’encadrement, les ressources, la stratégie et les opportunités nécessaires pour construire des carrières professionnelles.</p>
+      </div>
+      <div class="card">
+        <h3 class="brush">Notre vision</h3>
+        <p>Faire de Goma un véritable point de départ pour des carrières musicales capables de rayonner en RDC, en Afrique et dans le monde. Une ville où les artistes ne viennent pas seulement chercher leur chance, mais où les grandes carrières commencent.</p>
+      </div>
+    </div>
+    <div class="values">
+      <div class="val"><b>Respect</b><p>Nous respectons les artistes, leur travail et leur vision.</p></div>
+      <div class="val"><b>Qualité</b><p>Nous privilégions le travail bien fait plutôt que la production à tout prix.</p></div>
+      <div class="val"><b>Sérieux</b><p>Une carrière se construit avec de la discipline, de la constance et des décisions responsables.</p></div>
+      <div class="val"><b>Honnêteté</b><p>Nous construisons des relations basées sur la transparence et la confiance.</p></div>
+      <div class="val"><b>Ambition</b><p>Nous pensons au-delà de Goma, sans oublier d’où nous venons.</p></div>
+    </div>
+  </section>
+
+  <section id="blog">
+    <h2 class="tag brush">Blog</h2>
+    <div class="posts" id="posts"></div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2 class="tag brush">Contact</h2>
+    <div class="card">
+      <p>Pour une collaboration, une question ou un projet, écrivez-nous.</p>
+      <div class="row">
+        <a class="btn" id="tel" href="#">Appeler</a>
+        <a class="btn ghost" id="mail" href="#">E-mail</a>
+      </div>
+      <p class="links">
+        Téléphone : <a id="tel2" href="#"></a><br>
+        Texto : <a id="sms" href="#"></a><br>
+        E-mail : <a id="mail2" href="#"></a><br>
+        <span id="info"></span>
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Ubino Label · Goma, RDC</div>
+</footer>
+
+<script>
+/* ===== À MODIFIER : contacts et articles du blog ===== */
+var PHONE_DISPLAY = "+243 991 529 847";
+var PHONE_LINK = "+243991529847";
+var EMAIL = "ubinolabel@gmail.com";
+
+/* Pour ajouter un article, copiez un bloc { ... } et placez-le en PREMIER dans la liste.
+   Séparez les paragraphes par une ligne vide (\n\n). */
+var POSTS = [
+  {
+    title: "Bienvenue chez Ubino Label",
+    date: "17 octobre 2026",
+    text: "Bienvenue sur le blog d’Ubino Label, le label musical indépendant de Goma.\n\nIci, nous partagerons nos actualités, les sorties de nos artistes et les coulisses de notre travail. Notre conviction est simple : le talent existe à Goma, et il mérite un encadrement sérieux pour devenir une carrière.\n\nSuivez-nous pour découvrir les artistes que nous accompagnons et les projets à venir.\n\nÀ très bientôt,\nL’équipe Ubino Label"
+  }
+];
+/* ====================================================== */
+
+function el(tag, cls, text){ var e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
+
+var box = document.getElementById("posts");
+POSTS.forEach(function(p){
+  var a = el("article", "post");
+  a.append(el("time", "", p.date), el("h3", "", p.title));
+  var b = el("div", "body");
+  p.text.split("\n\n").forEach(function(par){ b.appendChild(el("p", "", par)); });
+  a.appendChild(b);
+  box.appendChild(a);
+});
+
+var tel = document.getElementById("tel");
+tel.href = "tel:" + PHONE_LINK; tel.textContent = "Appeler " + PHONE_DISPLAY;
+var mail = document.getElementById("mail");
+mail.href = "mailto:" + EMAIL; mail.textContent = EMAIL;
+var tel2 = document.getElementById("tel2"); tel2.href = "tel:" + PHONE_LINK; tel2.textContent = PHONE_DISPLAY;
+var sms = document.getElementById("sms"); sms.href = "sms:" + PHONE_LINK; sms.textContent = PHONE_DISPLAY;
+var mail2 = document.getElementById("mail2"); mail2.href = "mailto:" + EMAIL; mail2.textContent = EMAIL;
+document.getElementById("info").textContent = "Goma, République démocratique du Congo";
+</script>
+</body>
+</html>
