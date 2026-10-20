@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ubino Label, label musical indépendant à Goma</title>
+<meta name="description" content="Ubino Label, label musical indépendant à Goma, RDC. Développer les talents. Construire les carrières.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="hero" id="accueil">
+  <div class="wrap">
+    <header class="top">
+      <a class="logo" href="index.html">UBINO<small>LABEL</small></a>
+      <nav class="nav" aria-label="Navigation">
+        <a href="#apropos">À propos</a>
+        <a href="articles.html">Articles</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+    <div class="grid">
+      <div>
+        <p class="kicker">Label musical indépendant · Goma, RDC</p>
+        <h1 class="brush">Développer les talents. Construire les carrières.</h1>
+        <p class="lead">Le talent existe. Notre rôle est de lui donner une direction.</p>
+        <div class="row">
+          <a class="btn" href="articles.html">Lire les articles</a>
+          <a class="btn ghost" href="#contact">Nous contacter</a>
+        </div>
+      </div>
+      <div class="disc" role="img" aria-label="Disque vinyle Ubino"></div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section id="apropos">
+    <h2 class="tag brush">À propos</h2>
+    <div class="two">
+      <div class="card">
+        <h3 class="brush">Notre mission</h3>
+        <p>Promouvoir et développer les talents musicaux de Goma. Nous donnons aux artistes l’encadrement, les ressources, la stratégie et les opportunités nécessaires pour construire des carrières professionnelles.</p>
+      </div>
+      <div class="card">
+        <h3 class="brush">Notre vision</h3>
+        <p>Faire de Goma un véritable point de départ pour des carrières musicales capables de rayonner en RDC, en Afrique et dans le monde. Une ville où les artistes ne viennent pas seulement chercher leur chance, mais où les grandes carrières commencent.</p>
+      </div>
+    </div>
+    <div class="values">
+      <div class="val"><b>Respect</b><p>Nous respectons les artistes, leur travail et leur vision.</p></div>
+      <div class="val"><b>Qualité</b><p>Nous privilégions le travail bien fait plutôt que la production à tout prix.</p></div>
+      <div class="val"><b>Sérieux</b><p>Une carrière se construit avec de la discipline, de la constance et des décisions responsables.</p></div>
+      <div class="val"><b>Honnêteté</b><p>Nous construisons des relations basées sur la transparence et la confiance.</p></div>
+      <div class="val"><b>Ambition</b><p>Nous pensons au-delà de Goma, sans oublier d’où nous venons.</p></div>
+    </div>
+  </section>
+
+  <section id="articles">
+    <h2 class="tag brush">Articles</h2>
+    <div class="card">
+      <p>Actualités du label, sorties de nos artistes et coulisses de notre travail. Tous les articles sont réunis dans la section Articles.</p>
+      <a class="btn" href="articles.html">Lire les articles</a>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2 class="tag brush">Contact</h2>
+    <div class="card">
+      <p>Pour une collaboration, une question ou un projet, écrivez-nous.</p>
+      <div class="row">
+        <a class="btn" id="tel" href="#">Appeler</a>
+        <a class="btn ghost" id="mail" href="#">E-mail</a>
+      </div>
+      <p class="links">
+        Téléphone : <a id="tel2" href="#"></a><br>
+        Texto : <a id="sms" href="#"></a><br>
+        E-mail : <a id="mail2" href="#"></a><br>
+        <span id="info"></span>
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Ubino Label · Goma, RDC</div>
+</footer>
+
+<script>
+/* ===== À MODIFIER : contacts ===== */
+var PHONE_DISPLAY = "+243 991 529 847";
+var PHONE_LINK = "+243991529847";
+var EMAIL = "ubinolabel@gmail.com";
+/* ================================= */
+var tel = document.getElementById("tel");
+tel.href = "tel:" + PHONE_LINK; tel.textContent = "Appeler " + PHONE_DISPLAY;
+var mail = document.getElementById("mail");
+mail.href = "mailto:" + EMAIL; mail.textContent = EMAIL;
+var tel2 = document.getElementById("tel2"); tel2.href = "tel:" + PHONE_LINK; tel2.textContent = PHONE_DISPLAY;
+var sms = document.getElementById("sms"); sms.href = "sms:" + PHONE_LINK; sms.textContent = PHONE_DISPLAY;
+var mail2 = document.getElementById("mail2"); mail2.href = "mailto:" + EMAIL; mail2.textContent = EMAIL;
+document.getElementById("info").textContent = "Goma, République démocratique du Congo";
+</script>
+</body>
+</html>
