@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Articles | Ubino Label</title>
+<meta name="description" content="Les articles d’Ubino Label : actualités, sorties et coulisses du label musical de Goma.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="hero compact">
+  <div class="wrap">
+    <header class="top">
+      <a class="logo" href="index.html">UBINO<small>LABEL</small></a>
+      <nav class="nav" aria-label="Navigation">
+        <a href="index.html#apropos">À propos</a>
+        <a href="articles.html">Articles</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </header>
+  </div>
+</div>
+
+<main class="wrap articles-page">
+  <h1 class="tag brush">Articles</h1>
+  <div id="view"></div>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Ubino Label · Goma, RDC</div>
+</footer>
+
+<script src="articles.js"></script>
+<script>
+(function () {
+  var PER_PAGE = 6;
+  var all = (window.ARTICLES || []).slice().sort(function (a, b) {
+    return a.date < b.date ? 1 : (a.date > b.date ? -1 : 0);
+  });
+  var view = document.getElementById("view");
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text !== undefined) e.textContent = text;
+    return e;
+  }
+  function fmt(d) {
+    var x = new Date(d + "T12:00:00");
+    return isNaN(x) ? d : x.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+  }
+  function excerpt(t) {
+    var p = String(t).split("\n\n")[0];
+    return p.length > 150 ? p.slice(0, 150).replace(/\s+\S*$/, "") + "…" : p;
+  }
+  function link(href, label, current) {
+    var a = el("a", "", label);
+    a.href = href;
+    if (current) a.setAttribute("aria-current", "page");
+    return a;
+  }
+
+  function showList(page) {
+    var pages = Math.max(1, Math.ceil(all.length / PER_PAGE));
+    page = Math.min(Math.max(page, 1), pages);
+    document.title = "Articles" + (page > 1 ? ", page " + page : "") + " | Ubino Label";
+    if (!all.length) { view.appendChild(el("p", "count", "Aucun article pour le moment.")); return; }
+    view.appendChild(el("p", "count", all.length + (all.length > 1 ? " articles" : " article") + " · page " + page + " sur " + pages));
+    var list = el("div", "list");
+    all.slice((page - 1) * PER_PAGE, page * PER_PAGE).forEach(function (p) {
+      var a = el("a", "item");
+      a.href = "#a/" + encodeURIComponent(p.slug);
+      a.append(el("time", "", fmt(p.date)), el("h2", "", p.title), el("p", "", excerpt(p.text)));
+      list.appendChild(a);
+    });
+    view.appendChild(list);
+    if (pages < 2) return;
+    var pager = el("nav", "pager");
+    pager.setAttribute("aria-label", "Pages d’articles");
+    pager.appendChild(page > 1 ? link("#page-" + (page - 1), "Précédent") : el("span", "off", "Précédent"));
+    var last = 0;
+    for (var n = 1; n <= pages; n++) {
+      if (n === 1 || n === pages || Math.abs(n - page) <= 1) {
+        if (last && n - last > 1) pager.appendChild(el("span", "gap", "…"));
+        pager.appendChild(link("#page-" + n, String(n), n === page));
+        last = n;
+      }
+    }
+    pager.appendChild(page < pages ? link("#page-" + (page + 1), "Suivant") : el("span", "off", "Suivant"));
+    view.appendChild(pager);
+  }
+
+  function showArticle(slug) {
+    var i = all.findIndex(function (p) { return p.slug === slug; });
+    if (i < 0) {
+      view.append(link("#page-1", "← Tous les articles"), el("p", "count", "Cet article est introuvable."));
+      return;
+    }
+    var p = all[i];
+    document.title = p.title + " | Ubino Label";
+    var back = link("#page-" + (Math.floor(i / PER_PAGE) + 1), "← Tous les articles");
+    back.className = "back";
+    var box = el("article", "reader");
+    var body = el("div", "body");
+    String(p.text).split("\n\n").forEach(function (par) { body.appendChild(el("p", "", par)); });
+    box.append(el("time", "", fmt(p.date)), el("h2", "", p.title), body);
+    var step = el("div", "step");
+    if (all[i + 1]) step.appendChild(link("#a/" + encodeURIComponent(all[i + 1].slug), "← Article plus ancien"));
+    if (all[i - 1]) step.appendChild(link("#a/" + encodeURIComponent(all[i - 1].slug), "Article plus récent →"));
+    view.append(back, box, step);
+  }
+
+  function route() {
+    var h = location.hash.replace("#", "");
+    view.textContent = "";
+    if (h.indexOf("a/") === 0) showArticle(decodeURIComponent(h.slice(2)));
+    else showList(parseInt(h.replace("page-", ""), 10) || 1);
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener("hashchange", route);
+  route();
+})();
+</script>
+</body>
+</html>
